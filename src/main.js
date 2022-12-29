@@ -1,14 +1,21 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 
-import App from './App.vue'
-import router from './router'
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
 
-import './assets/main.css'
+import 'material-icons/iconfont/material-icons.css';
 
-const app = createApp(App)
+import App from "./App.vue";
+import router from "./router";
 
-app.use(createPinia())
-app.use(router)
+import "./assets/scss/main.scss";
 
-app.mount('#app')
+const app = createApp(App);
+// 通过遍历的方式注册所有 svg组件，会牺牲一点点性能
+
+app.use(createPinia());
+app.use(ElementPlus);
+app.use(router);
+
+app.mount("#app");

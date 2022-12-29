@@ -1,0 +1,29 @@
+$gray: #999;
+$gray-light: lighten($gray, 50%);
+$green: #36bc69;
+$bluegreen: #0ccc92;
+
+$mainColor: $green;
+
+$pc: 1024px;
+$leptop: 768px;
+
+%text-bold {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@mixin rwd($device) {
+  @media screen and (min-width: $device) {
+    @content;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
