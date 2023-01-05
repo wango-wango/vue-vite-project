@@ -1,9 +1,16 @@
 <script setup>
-import AccordionVue from "../../../components/common/Accordion.vue";
-import { h } from "vue";
-const render = () => {
-  return h("div", null, "常見問題");
-};
+import AccordionVue from "/src/components/common/Accordion.vue";
+import { onMounted } from "vue";
+
+const props = defineProps({
+  title: {
+    type: String,
+    default: "title",
+  },
+});
+onMounted(() => {
+  console.log(props?.title);
+});
 const QAData = [
   {
     title: "誰可以網路投保？",
@@ -20,14 +27,13 @@ const QAData = [
   },
   {
     title: "若投保後，發現保單不適合該怎麼辦？",
-    content:
-      `由於保險契約大多屬於長期繼續性的契約，投保時應審慎衡量自身需求及繳費能力。要保人可隨時至國泰人壽各服務據點 https://www.cathaylife.com.tw/cathaylife/location，或登入會員專區 https://www.cathaylife.com.tw/oc/OCWeb/html/OC/Login/Login.jsp，提出終止本契約之申請，若要保人保險費已付足達一年以上或繳費累積達有保單價值準備金，國泰人壽應償付解約金。`,
+    content: `由於保險契約大多屬於長期繼續性的契約，投保時應審慎衡量自身需求及繳費能力。要保人可隨時至國泰人壽各服務據點 https://www.cathaylife.com.tw/cathaylife/location，或登入會員專區 https://www.cathaylife.com.tw/oc/OCWeb/html/OC/Login/Login.jsp，提出終止本契約之申請，若要保人保險費已付足達一年以上或繳費累積達有保單價值準備金，國泰人壽應償付解約金。`,
   },
 ];
 </script>
 <template>
   <div class="QA-container">
-    <div class="QA-title"><render /></div>
+    <div class="QA-title">{{ title }}</div>
     <div class="QA-content">
       <AccordionVue :QAList="QAData" />
     </div>
@@ -39,12 +45,7 @@ const QAData = [
 .QA-container {
   padding: 2rem;
   .QA-title {
-    font-size: 2.5rem;
-    text-align: center;
-    padding: 1rem;
-    font-weight: 600;
-    padding-bottom: 2rem;
-    color: $blue;
+   @extend %title;
   }
 }
 </style>
