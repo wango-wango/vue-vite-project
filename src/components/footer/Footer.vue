@@ -83,7 +83,7 @@ const open = () => {
       div {
         width: 50%;
         border-bottom: 1px solid #ddd;
-        padding: 0.5rem 0.5rem;
+        padding: 1rem 0.5rem;
         @include rwd($leptop) {
           width: auto;
           border-bottom: 1px solid transparent;
