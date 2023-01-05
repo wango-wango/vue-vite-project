@@ -1,0 +1,21 @@
+%outline-btn {
+    width: 50%;
+    border: 2px solid $orange;
+    background-color: transparent;
+    padding: 1rem 2rem;
+    border-radius: 0.4rem;
+    color: $orange;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+%fill-btn {
+    width: 50%;
+    border: none;
+    background-color: $orange;
+    padding: 1rem 2rem;
+    border-radius: 0.4rem;
+    color: $white;
+    font-size: 2rem;
+    font-weight: 600;
+}

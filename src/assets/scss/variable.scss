@@ -2,9 +2,9 @@ $gray: #999;
 $gray-light: #eee;
 $green: #36bc69;
 $bluegreen: #0ccc92;
-$white : rgb(236, 236, 236);
-$black : rgb(22, 22, 22);
-$orange : rgb(255, 125, 32);
+$white: rgb(236, 236, 236);
+$black: rgb(22, 22, 22);
+$orange: rgb(255, 125, 32);
 $blue: rgb(4, 157, 218);
 
 $mainColor: $green;
@@ -31,4 +31,13 @@ $mobile: 480px;
   100% {
     opacity: 1;
   }
+}
+
+%title {
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 1rem;
+  font-weight: 600;
+  padding-bottom: 2rem;
+  color: $blue;
 }
