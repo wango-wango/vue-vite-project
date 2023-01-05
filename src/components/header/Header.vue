@@ -3,21 +3,23 @@ import { ElMessage, ElMessageBox } from "element-plus";
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
-import Login from "../login/Login.vue";
 import { useMemberStore } from "../../stores/member";
+import Login from "../login/Login.vue";
+import { useLoginStore } from "../../stores/login";
 
 let showLogin = ref(false); // 是否登入
 let showHamburger = ref(false); // 是否開啟漢堡包
-let test = ref("123");
 
 const router = useRouter(); // 引用路徑的fn
 
+const loginStore = useLoginStore(); // 引用 loginStore
 const memberStore = useMemberStore(); // 引用 memberStore
-let { token } = storeToRefs(memberStore);
+let { token } = storeToRefs(memberStore); // 從store 取 token
 
 const updateShowLogin = () => {
   showLogin.value = false;
 };
+// 登入事件
 const login = () => {
   showHamburger.value = false;
   if (!token.value) {
@@ -28,7 +30,7 @@ const login = () => {
 
 const toMember = () => {
   showHamburger.value = false;
-  if(token.value){
+  if (token.value) {
     router.push({
       path: "/member",
     });
@@ -43,8 +45,10 @@ const logout = () => {
     center: true,
   })
     .then(() => {
+      router.push({ path: "/" });
       showLogin.value = false;
       memberStore.resetToken();
+      loginStore.resetLogin();
       ElMessage({
         type: "success",
         message: "logout completed",
@@ -94,12 +98,7 @@ const logout = () => {
   <!-- 登入對話框、雙向綁定資料流 -->
   <!-- <Login :showLogin="showLogin" @update="updateShowLogin" /> -->
   <!-- 改控是否出現就好 -->
-  <Login
-    v-if="showLogin"
-    @update="updateShowLogin"
-    :test="test"
-    @heyheyhey="(e) => (test = e)"
-  />
+  <Login v-if="showLogin" @closeLogin="updateShowLogin" />
 
   <div>
     <el-drawer
@@ -126,9 +125,9 @@ const logout = () => {
 
 :deep(.hamburger) {
   width: 100% !important;
-  @include rwd($leptop) {
-      width: 30%;
-    }
+  @include rwd($mobile) {
+    width: 30% !important;
+  }
 }
 
 .header-container {

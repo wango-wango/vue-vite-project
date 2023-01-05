@@ -1,69 +1,52 @@
 <script setup>
 
-import { useMemberStore } from "../../stores/member";
-import { useLoadingStore } from "../../stores/loading";
+import { ref } from "vue";
+import IdentifyLoginVue from "./components/IdentifyLogin.vue";
+import NormalLoginVue from "./components/NormalLogin.vue";
+import DialogVue from "../common/Dialog.vue";
 
-import { storeToRefs } from "pinia";
 
-// props
-const props = defineProps({
-  test: String,
-});
-
-// 直接更新 props 的方式
 //emit
-const emit = defineEmits(["update", "getToken", "heyheyhey"]);
+const emit = defineEmits(["closeLogin", "getToken"]);
 
-// store
-const memberStore = useMemberStore();
-const loadingStore = useLoadingStore();
-
-let { loading } = storeToRefs(loadingStore);
-
-//fn
-const login = () => {
-  loadingStore.showLoading();
-  // 這邊可以去後端拿 token
-  // 拿完之後回傳到父層
-  // 同時存入 store
-  let res = "aaa";
-  memberStore.getToken(res);
-  setTimeout(() => {
-    loadingStore.hideLoading();
-    emit("update", { showLogin: false });
-  }, 1000);
+// tabs
+const activeName = ref("normal");
+const handleClick = (tab, event) => {
+  console.log(tab, event);
+  console.log(activeName.value);
 };
+
+// 點擊對話框外 關閉login
 const closeLogin = () => {
-  emit("update");
+  emit("closeLogin");
 };
 </script>
 
 <template>
-  <el-dialog
-    :model-value="true"
-    title="Outer Dialog"
-    :before-close="closeLogin"
-  >
-  <template #header>
-    <div>
-      <h1>會員登入</h1>
-    </div>
-  </template>
-    <template #default>
-      <div class="login-form" v-loading="loading" @click="emit('heyheyhey','3345678')">
-        <label for=""></label>
-        <input type="text" />
-        <input type="password" />
-        <span>{{ props.test }}</span>
-      </div>
-    </template>
-    <template #footer>
-      <div class="dialog-footer">
-        <el-button @click="closeLogin">Cancel</el-button>
-        <el-button type="primary" @click="login()"> Login </el-button>
-      </div>
-    </template>
-  </el-dialog>
+  <div>
+    <DialogVue @closeLogin="closeLogin" headerTitle="會員登入">
+      <template v-slot:default>
+        <div class="member-tab">
+          <el-tabs
+            v-model="activeName"
+            class="demo-tabs"
+            @tab-click="handleClick"
+          >
+            <el-tab-pane label="一般登入" name="normal"></el-tab-pane>
+            <el-tab-pane label="驗證碼登入" name="CAPTCHA"></el-tab-pane>
+          </el-tabs>
+        </div>
+        <NormalLoginVue v-if="activeName === 'normal'" @closeLogin="closeLogin"></NormalLoginVue>
+        <IdentifyLoginVue v-else @closeLogin="closeLogin"></IdentifyLoginVue>
+      </template>
+    </DialogVue>
+
+
+
+
+  </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "src/assets/scss/elementUI.scss";
+</style>
