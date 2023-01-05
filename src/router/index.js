@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import HomeView from '../views/home/HomeView.vue';
 import { useMemberStore } from "../stores/member";
 
 
@@ -19,25 +19,26 @@ const router = createRouter({
         {
           path: "/about",
           name: "about",
-          // route level code-splitting
-          // this generates a separate chunk (About.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
           component: () => import("../views/AboutView.vue"),
         },
         {
           path: "/platform",
           name: "platform",
-          // route level code-splitting
-          // this generates a separate chunk (About.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
           component: () => import("../views/PlatformView.vue"),
+        },
+        {
+          path: "/forgetPwd",
+          name: "forgetPwd",
+          component: () => import("../views/ForgetPwdView.vue"),
+        },
+        {
+          path: "/register",
+          name: "register",
+          component: () => import("../views/RegisterView.vue"),
         },
         {
           path: "/member",
           name: "member",
-          // route level code-splitting
-          // this generates a separate chunk (About.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
           component: () => import("../views/MemberView.vue"),
         },
       ],
