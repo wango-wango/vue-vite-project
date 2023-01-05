@@ -94,16 +94,30 @@
         left: 0;
         background: -webkit-linear-gradient(
           to top,
-          rgb(200, 230, 232),
+          rgb(200, 230, 232) 30%,
           rgb(16, 159, 130)
         );
         background: linear-gradient(
           to top,
-          rgb(200, 230, 232),
+          rgb(200, 230, 232) 30%,
           rgb(16, 159, 130)
         );
         border-radius: 0 50% 50% 0;
         width: 100%;
+      }
+      @include rwd($pc) {
+        height: 50rem;
+        top: -12rem;
+        background: -webkit-linear-gradient(
+          to top,
+          rgb(200, 230, 232) 30%,
+          rgb(16, 159, 130)
+        );
+        background: linear-gradient(
+          to top,
+          rgb(200, 230, 232) 30%,
+          rgb(16, 159, 130)
+        );
       }
     }
 
