@@ -1,0 +1,42 @@
+@import "./variable.scss";
+
+%form {
+  margin: auto;
+  label {
+    width: 100%;
+  }
+  input {
+    width: 100%;
+    border-radius: 0.8rem;
+    border: 1.2px solid $gray;
+    padding: 0.6rem;
+    color: $gray;
+    &:focus-visible {
+      border: 1.5px solid $black;
+      outline: none;
+    }
+  }
+}
+%sid {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 1rem;
+  input {
+    width: 50%;
+    height: 3rem;
+  }
+}
+
+%btn-confirm {
+    button{
+        width: 50%;
+          border: none;
+          background-color: $orange;
+          padding: 1rem 2rem;
+          border-radius: 0.4rem;
+          color: $white;
+          font-size: 2rem;
+    }
+}
+

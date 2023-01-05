@@ -1,12 +1,17 @@
 $gray: #999;
-$gray-light: lighten($gray, 50%);
+$gray-light: #eee;
 $green: #36bc69;
 $bluegreen: #0ccc92;
+$white : rgb(236, 236, 236);
+$black : rgb(22, 22, 22);
+$orange : rgb(255, 125, 32);
+$blue: rgb(4, 157, 218);
 
 $mainColor: $green;
 
 $pc: 1024px;
 $leptop: 768px;
+$mobile: 480px;
 
 %text-bold {
   text-transform: uppercase;

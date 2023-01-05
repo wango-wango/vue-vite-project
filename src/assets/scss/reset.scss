@@ -1,3 +1,4 @@
+@import "./variable.scss";
 * {
     margin: 0;
     padding: 0;
@@ -61,4 +62,8 @@ nav,
 section,
 summary {
     display: block;
+}
+
+:root {
+    --el-color-primary : #36bc69;
 }
