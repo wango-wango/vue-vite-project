@@ -49,4 +49,7 @@ const closeLogin = () => {
 
 <style lang="scss" scoped>
 @import "src/assets/scss/elementUI.scss";
+:deep(.el-tabs__item) {
+  width: 50%;
+}
 </style>

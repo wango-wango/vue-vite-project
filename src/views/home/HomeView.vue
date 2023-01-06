@@ -56,4 +56,12 @@ onBeforeMount(() => {});
 
 <style lang="scss" scoped>
 @import "src/assets/scss/elementUI.scss";
+@import "src/assets/scss/variable.scss";
+
+:deep(.el-tabs__item) {
+  width: 33%;
+  @include rwd($leptop) {
+    width: 100%;
+  }
+}
 </style>
